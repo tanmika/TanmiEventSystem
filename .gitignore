@@ -34,3 +34,8 @@
 
 # Visual Studio .vs folder
 .vs/
+.Debug/
+.Release/
+.x64/
+.x86/
+.ipch/
