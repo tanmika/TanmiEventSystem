@@ -15,12 +15,15 @@ src文件夹下包含：
 事件系统
 - TanmiListener_64.hpp
 事件监听器接口
-- TanmiClock_64,hpp
+- TanmiClock_64.hpp
 时钟系统
 
 demo文件夹下包含：
 - TanmiEventSystem.sln
 演示项目
+
+将TanmiEventSystem_64.hpp与TanmiListener_64.hpp包含至项目中即可使用，
+若需要时钟功能，还需包含TanmiClock_64.hpp，调用时需使用命名空间TanmiEngine
 
 注意，在使用该项目时需要支持 C++20 特性的编译器。
 ### 用法
