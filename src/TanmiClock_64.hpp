@@ -202,9 +202,9 @@ namespace TanmiEngine
 		}
 #ifdef EVENT_SYSTEM
 		// 添加事件至时钟
-		void AddEvent(const std::string&, const std::string&);
+		void AddEvent(const std::string&, const std::string& event);
 		// 移除事件
-		void RemoveEvent(const std::string&, const std::string&);
+		void RemoveEvent(const std::string&, const std::string& event);
 		// 获取事件列表
 		std::vector<std::string>& GetEventList(const std::string&);
 		// 清空事件列表

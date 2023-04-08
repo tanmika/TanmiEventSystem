@@ -64,6 +64,7 @@ namespace TanmiEngine
 		static EventSystem& Instance();
 
 		// 触发事件
+		// event: 事件名称
 		void TriggerEvent(const std::string& event);
 
 		// 触发事件
@@ -92,7 +93,7 @@ namespace TanmiEngine
 		// 判断指定事件是否存在
 		// event: 事件名称
 		bool IsEventExist(const std::string& event)const;
-
+		
 		// 判断指定事件是否存在，无异常检测
 		// event: 事件名称
 		bool IsEventExistNoException(const std::string& event)const;
@@ -116,8 +117,8 @@ namespace TanmiEngine
 			{
 				throw EventSystemEventNotFoundException();
 			}
-			auto it = range.first;
-			auto it_end = range.second;
+			auto& it = range.first;
+			auto& it_end = range.second;
 			std::lock_guard<std::mutex> lock(mtx_temp);
 			while (it != it_end)
 			{
@@ -145,8 +146,8 @@ namespace TanmiEngine
 			{
 				throw EventSystemEventNotFoundException();
 			}
-			auto it = range.first;
-			auto it_end = range.second;
+			auto& it = range.first;
+			auto& it_end = range.second;
 			std::lock_guard<std::mutex> lock(mtx_temp);
 			while (it != it_end)
 			{
@@ -181,7 +182,7 @@ namespace TanmiEngine
 			}
 			std::lock_guard<std::mutex> lock(mtx);
 			auto range = EventList.equal_range(event);
-			auto it = range.first;
+			auto& it = range.first;
 			for (it = range.first; it != range.second; ++it)
 			{
 				if (it->second == client)
