@@ -1,0 +1,124 @@
+﻿  Demo.cpp
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(201,28): warning C4244: “return”: 从“TanmiEngine::ull”转换到“int”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(318,31): warning C4244: “return”: 从“TanmiEngine::ull”转换到“double”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(330,35): warning C4244: “return”: 从“unsigned __int64”转换到“double”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(346,38): warning C4244: “初始化”: 从“float”转换到“unsigned __int64”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(349,35): warning C4244: “return”: 从“unsigned __int64”转换到“double”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(436,30): warning C4244: “=”: 从“double”转换到“TanmiEngine::ull”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(454,15): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(624,25): warning C4244: “+=”: 从“float”转换到“TanmiEngine::ull”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(666,25): warning C4244: “+=”: 从“float”转换到“TanmiEngine::ull”，可能丢失数据
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(261,71): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=double
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(260,16): message : 查看对正在编译的函数 模板 实例化“_Ty *std::construct_at<_Ty,const std::string&,_Ty1&,double,float,bool,0x0>(_Ty *const ,const std::string &,_Ty1 &,double &&,float &&,bool &&) noexcept(<expr>)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : 查看对正在编译的函数 模板 实例化“void std::_Construct_in_place<_Ty,const std::string&,_Ty1&,double,float,bool>(_Ty &,const std::string &,_Ty1 &,double &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(2663): message : 查看对正在编译的函数 模板 实例化“std::_Ref_count_obj2<TanmiEngine::ClockElem>::_Ref_count_obj2<const std::string&,_Ty1&,_Ty,float,bool>(const std::string &,_Ty1 &,_Ty &&,float &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull,
+              _Ty=double
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(2664,20): message : 查看对正在编译的函数 模板 实例化“std::_Ref_count_obj2<TanmiEngine::ClockElem>::_Ref_count_obj2<const std::string&,_Ty1&,_Ty,float,bool>(const std::string &,_Ty1 &,_Ty &&,float &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull,
+              _Ty=double
+          ]
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(233,60): message : 查看对正在编译的函数 模板 实例化“std::shared_ptr<TanmiEngine::ClockElem> std::make_shared<TanmiEngine::ClockElem,const std::string&,_Ty1&,double,float,bool>(const std::string &,_Ty1 &,double &&,float &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(275,77): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=double
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(261,71): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=float
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(260,16): message : 查看对正在编译的函数 模板 实例化“_Ty *std::construct_at<_Ty,std::string&,_Ty1&,float,float,bool,0x0>(_Ty *const ,std::string &,_Ty1 &,float &&,float &&,bool &&) noexcept(<expr>)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : 查看对正在编译的函数 模板 实例化“void std::_Construct_in_place<_Ty,std::string&,_Ty1&,float,float,bool>(_Ty &,std::string &,_Ty1 &,float &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(2663): message : 查看对正在编译的函数 模板 实例化“std::_Ref_count_obj2<TanmiEngine::ClockElem>::_Ref_count_obj2<std::string&,_Ty1&,_Ty,_Ty,bool>(std::string &,_Ty1 &,_Ty &&,_Ty &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull,
+              _Ty=float
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(2664,20): message : 查看对正在编译的函数 模板 实例化“std::_Ref_count_obj2<TanmiEngine::ClockElem>::_Ref_count_obj2<std::string&,_Ty1&,_Ty,_Ty,bool>(std::string &,_Ty1 &,_Ty &&,_Ty &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull,
+              _Ty=float
+          ]
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(497,61): message : 查看对正在编译的函数 模板 实例化“std::shared_ptr<TanmiEngine::ClockElem> std::make_shared<TanmiEngine::ClockElem,std::string&,_Ty1&,float,float,bool>(std::string &,_Ty1 &,float &&,float &&,bool &&)”的引用
+          with
+          [
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(275,77): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=float
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(262,85): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=double
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(268): message : 查看对正在编译的函数 模板 实例化“_Ty *std::construct_at<_Ty,const std::string&,_Ty1&,double,float,bool,0x0>(_Ty *const ,const std::string &,_Ty1 &,double &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : 查看对正在编译的函数 模板 实例化“void std::_Construct_in_place<_Ty,const std::string&,_Ty1&,double,float,bool>(_Ty &,const std::string &,_Ty1 &,double &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(262,85): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
+          with
+          [
+              _Ty=float
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(268): message : 查看对正在编译的函数 模板 实例化“_Ty *std::construct_at<_Ty,std::string&,_Ty1&,float,float,bool,0x0>(_Ty *const ,std::string &,_Ty1 &,float &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : 查看对正在编译的函数 模板 实例化“void std::_Construct_in_place<_Ty,std::string&,_Ty1&,float,float,bool>(_Ty &,std::string &,_Ty1 &,float &&,float &&,bool &&) noexcept(false)”的引用
+          with
+          [
+              _Ty=TanmiEngine::ClockElem,
+              _Ty1=TanmiEngine::ull
+          ]
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock_64.hpp(601): warning C4172: 返回局部变量或临时变量的地址: void_ull
+  TanmiEventSystem.vcxproj -> I:\EnginePrj\TanmiEventSystem\demo\x64\Debug\TanmiEventSystem.exe
