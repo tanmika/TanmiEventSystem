@@ -1,6 +1,10 @@
-//
-//	Tanmika --2023.4.2
-//
+/**
+ * @file	TanmiClock
+ * @author	Tanmika
+ * @email	tanmika@foxmail.com
+ * @date	2023-4-9
+ * @brief	一个基于单例模式的简单时钟系统
+ */
 #pragma once
 #include <iostream>
 #include <Windows.h>
@@ -11,15 +15,14 @@
 #include <algorithm>
 #include <exception>
 
-#include"TanmiEventSystem_64.hpp"
-
-// 使用单例模式与线程安全 支持拓展
 namespace TanmiEngine
 {
-	using ull = unsigned long long;
-	using lint = LARGE_INTEGER;
+	using ull = unsigned long long;	///< 使用 unsigned long long 定义 ull。
+	using lint = LARGE_INTEGER;		///< 使用 LARGE_INTEGER 定义 lint。
 
-	// exception
+	/**
+	 * @brief Clock 类异常基类。
+	 */
 	class ClockException : public std::exception
 	{
 	public:
@@ -28,6 +31,9 @@ namespace TanmiEngine
 			return "::Expection Clock Exception basic";
 		}
 	};
+	/**
+	 * @brief 数值越界异常类。
+	 */
 	class ClockOutOfRangeException : public ClockException
 	{
 	public:
@@ -36,6 +42,9 @@ namespace TanmiEngine
 			return "::Expection out_of_range";
 		}
 	};
+	/**
+	 * @brief 时钟未找到异常类。
+	 */
 	class ClockNotFoundException : public ClockException
 	{
 	public:
@@ -44,6 +53,9 @@ namespace TanmiEngine
 			return "::Expection clock_not_found";
 		}
 	};
+	/**
+	 * @brief 时钟已存在异常类。
+	 */
 	class ClockNameExistException :public ClockException
 	{
 	public:
@@ -53,6 +65,9 @@ namespace TanmiEngine
 		}
 	};
 #ifdef EVENT_SYSTEM
+	/**
+	 * @brief 时钟事件未找到异常类。
+	 */
 	class ClockEventNotFoundException :public ClockException
 	{
 	public:
@@ -63,45 +78,84 @@ namespace TanmiEngine
 	};
 #endif // EVENT_SYSTEM
 
-	// element
+	/**
+	 * @brief 该类用于表示时钟元素，包含一些时钟相关的属性和方法。
+	 *
+	 * 该类作为时钟元，不可直接被调用
+	 */
 	class ClockElem
 	{
 	public:
-		~ClockElem() = default;
-		ClockElem() = delete;
-		ClockElem(ClockElem&, std::string, ull);
+		~ClockElem() = default;	///< 析构函数
+		ClockElem() = delete;	///< 禁用默认构造函数
+
+		 /**
+		 * @brief 构造函数，用于复制时钟元素
+		 * @param ref 参考元素
+		 * @param _name 新时钟元素名称
+		 * @param _cycle 新时钟元素的计数值
+		 */
+		ClockElem(ClockElem& parent, std::string name, ull cycle);
+
+		/**
+		* @brief 构造函数，用于创建新时钟元素
+		* @param _name 时钟元素名称
+		* @param _cycle 计数周期
+		* @param _update 更新周期
+		* @param _scale 时钟放缩比例
+		* @param _pause 是否暂停
+		*/
 		ClockElem(std::string _name, ull _cycle, ull _update, float _scale, bool _pause) :
 			name(_name), cycle(_cycle), last_cycle(_cycle), update_tick(_update), ins_cycle(_cycle),
 			pause_cycle(0), relative_tick(0), scale(_scale), pause(_pause), temp_ull(0), temp_lint({})
 		{}
-		// cycle -> 绝对计数 ,tick -> 相对计数
-		std::string name;		// 名字
-		ull cycle;				// 上次唤起更新计数点
-		ull last_cycle;			// 上次有效更新帧计数点
-		ull update_tick;		// 更新周期
-		ull ins_cycle;			// 初始时计数点
-		ull pause_cycle;		// 暂停时刻计数点
-		ull relative_tick;		// 相对经过的总计数
-		float scale;			// 放缩率
-		bool pause;				// 是否暂停
-		ull temp_ull;			// 缓冲
-		lint temp_lint;			// 缓冲
-		std::mutex lock;		// 数据锁
-		std::mutex templock;	// 缓冲锁
+
+		//
+		// cycle -> 绝对周期, tick -> 相对周期
+		//
+		std::string name;       ///< 时钟元素名称
+		ull cycle;              ///< 上次唤起更新计数点
+		ull last_cycle;         ///< 上次有效更新帧计数点
+		ull update_tick;        ///< 更新周期
+		ull ins_cycle;          ///< 初始时计数点
+		ull pause_cycle;        ///< 暂停时刻计数点
+		ull relative_tick;      ///< 相对经过的总计数
+		float scale;            ///< 放缩率
+		bool pause;             ///< 是否暂停
+		ull temp_ull;           ///< 缓冲
+		lint temp_lint;         ///< 缓冲
+		std::mutex lock;        ///< 数据锁
+		std::mutex templock;    ///< 缓冲锁
+
 #ifdef EVENT_SYSTEM
-		std::vector<std::string> eventList;	// 事件列表
+		std::vector<std::string> eventList;  ///< 事件列表
 #endif // EVENT_SYSTEM
+
 		//----------setting----------
+		 /**
+		 * @brief 设置时钟元素名称
+		 * @param _str 时钟元素名称
+		 */
 		inline void setNameStr(const std::string _str)
 		{
 			std::lock_guard<std::mutex> elemguard(lock);
 			name = _str;
 		}
+
+		/**
+		* @brief 设置时钟元素的更新周期
+		* @param _rate 更新周期
+		 */
 		inline void setFrameRateUll(const ull _rate)
 		{
 			std::lock_guard<std::mutex> elemguard(lock);
 			update_tick = _rate;
 		}
+
+		/**
+		 * @brief 设置时钟元素的放缩率
+		 * @param _scale 放缩率
+		 */
 		inline void setScaleFloat(const float _scale)
 		{
 			std::lock_guard<std::mutex> elemguard(lock);
@@ -120,98 +174,227 @@ namespace TanmiEngine
 		this->temp_lint = e.temp_lint;
 	}
 
-	// singleton class
+	/**
+	 * @brief 该类定义了一个基于帧计数的计时器系统
+	 *
+	 * 基于单例模式实现
+	 */
 	class Clock
 	{
 	private:
+		/**
+		 * @brief 一个事件名到 ClockElem 共享指针的哈希表，用于存储计时器元素
+		 */
 		std::unordered_map<std::string, std::shared_ptr<ClockElem>> clockMap;
-		std::mutex lock_clk;
-		ull temp_ull_clk;
-		lint temp_lint_clk;
+		std::mutex lock_clk;	///< 互斥锁，用于保证线程安全
+		ull temp_ull_clk;		///< 类内缓存ull时钟计数
+		lint temp_lint_clk;		///< 类内缓存lint时钟计数
 	private:
-		const int MAX_FRAME_RATE_PER_SECOND = 1000;
-		const double MIN_FRAME_RATE_PER_SECOND = 0.001;
-		const int MAX_SCALE = 1000;
-		const double MIN_SCALE = 0.001;
+		const int MAX_FRAME_RATE_PER_SECOND = 1000;		///< 最大帧率
+		const double MIN_FRAME_RATE_PER_SECOND = 0.001;	///< 最小帧率
+		const int MAX_SCALE = 1000;			///< 最大缩放倍数
+		const double MIN_SCALE = 0.001;		///< 最小缩放倍数
 	private:
-		Clock();
-		Clock(Clock&) = delete;
-		Clock& operator=(Clock&) = delete;
-		Clock(Clock&&) = delete;
-		Clock& operator=(Clock&&) = delete;
+		Clock();	///< 构造函数 
+		Clock(Clock&) = delete;	///< 禁用拷贝构造函数
+		Clock& operator=(Clock&) = delete;	///< 禁用拷贝赋值运算符
+		Clock(Clock&&) = delete;	///< 禁用移动构造函数
+		Clock& operator=(Clock&&) = delete;	///< 禁用移动赋值运算符
 		//----------tool----------
-		// 获取时钟对象指针，失败时返回nullptr
-		inline std::shared_ptr<ClockElem> getIterator(const std::string&);
-		// 获取ull时钟计数与频率，使用类内缓冲
+		/**
+		* @brief 获取时钟对象指针，失败时返回nullptr
+		* @param _name 时钟对象名称
+		* @return std::shared_ptr<ClockElem> 时钟对象指针，若找不到则返回nullptr
+		*/
+		inline std::shared_ptr<ClockElem> getIterator(const std::string& _name);
+		/**
+		* @brief 获取ull时钟计数与频率，使用类内缓冲
+		*
+		* @return std::pair<ull, ull> ull时钟计数和频率
+		*/
 		inline std::pair<ull, ull> getCycleAndFreqIns();
-		// 获取ull时钟计数，使用元素缓冲
-		inline ull& getCycleNow(const std::string&);
-		// 获取ull时钟计数，使用元素缓冲
-		inline ull& getCycleNow(std::shared_ptr<ClockElem>);
-		// 获取ull时钟频率，使用元素缓冲
-		inline ull& getFreqNow(const std::string&);
-		// 获取ull时钟频率，使用元素缓冲
-		inline ull& getFreqNow(std::shared_ptr<ClockElem>);
-
+		/**
+		* @brief 获取ull时钟计数，使用元素缓冲
+		*
+		* @param _name 时钟对象名称
+		* @return ull& 时钟计数
+		*/
+		inline ull& getCycleNow(const std::string& _name);
+		/**
+		* @brief 获取ull时钟计数，使用元素缓冲
+		*
+		* @param i 时钟对象指针
+		* @return ull& 时钟计数
+		*/
+		inline ull& getCycleNow(std::shared_ptr<ClockElem> i);
+		/**
+		* @brief 获取ull时钟频率，使用元素缓冲
+		*
+		* @param _name 时钟对象名称
+		* @return ull& 时钟频率
+		*/
+		inline ull& getFreqNow(const std::string& _name);
+		/**
+		* @brief 获取ull时钟频率，使用元素缓冲
+		*
+		* @param i 时钟对象指针
+		* @return ull& 时钟频率
+		*/
+		inline ull& getFreqNow(std::shared_ptr<ClockElem> i);
 		//----------function----------
-		// 获取时钟是否超过更新点，是则更新时钟
-		inline bool isUpdate(const std::string&);
-		// 获取时钟是否超过更新点，是则更新时钟
-		inline bool isUpdate(std::shared_ptr<ClockElem>);
+		/**
+		 * @brief 获取时钟是否超过更新点，是则更新时钟
+		 * @param _name 时钟名称
+		 * @return 是否需要更新时钟
+		 */
+		inline bool isUpdate(const std::string& _name);
+		/**
+		 * @brief 获取时钟是否超过更新点，是则更新时钟
+		 * @param _name 时钟元素指针
+		 * @return 是否需要更新时钟
+		 */
+		inline bool isUpdate(std::shared_ptr<ClockElem> _name);
 
 	public:
-		// 获取Clock实例引用
+		/**
+		 * @brief 获取Clock实例引用
+		 * @return Clock& Clock实例引用
+		 */
 		static Clock& Instance();
 		//----------elemFunction----------
-		// 新建时钟，参数为时钟名称和刷新率
-		bool NewClock(const std::string&, double);
-		// 移除时钟，参数为时钟名称
-		bool EraseClock(const std::string&);
-		// 复制时钟，参数为时钟名称和新时钟名称
-		bool CopyClock(const std::string&, const std::string&);
+		/**
+		 * @brief 新建时钟
+		 * @param _name 时钟名称
+		 * @param _fps 刷新率
+		 * @return true 新建成功
+		 * @return false 新建失败
+		 */
+		bool NewClock(const std::string& _name, double _fps);
+		/**
+		 * @brief 移除时钟
+		 * @param _name 时钟名称
+		 * @return true 移除成功
+		 * @return false 移除失败
+		 */
+		bool EraseClock(const std::string& _name);
+		/**
+		 * @brief 复制时钟
+		 * @param _name 被复制的时钟名称
+		 * @param newclk 新时钟名称
+		 * @return true 复制成功
+		 * @return false 复制失败
+		 */
+		bool CopyClock(const std::string& _name, const std::string& newclk);
 		//----------getFunction----------
-		// 获取时钟是否超过更新点，是则更新时钟，参数为时钟名称
-		bool GetUpdate(const std::string&);
-		// 获取时钟是否暂停，参数为时钟名称
-		bool GetPause(const std::string&);
-		// 获取时钟刷新率，参数为时钟名称
-		double GetFramePerSecond(const std::string&);
-		// 获取时钟自创建以来经过的绝对时长，参数为时钟名称
-		double GetElapsed(const std::string&);
-		// 获取时钟自上一刷新节点经过的绝对时长，参数为时钟名称
-		double GetTick(const std::string&);
-		// 获取时钟自创建以来经过的相对时长，参数为时钟名称
-		double GetElapsedRelative(const std::string&);
-		// 获取时钟自上一刷新节点经过的相对时长，参数为时钟名称
-		double GetTickRelative(const std::string&);
-		//----------setFunction----------
-		// 设置时钟暂停状态，参数为时钟名称和布尔值，true表示暂停，false表示继续
-		void SetPause(const std::string&, bool);
-		// 设置刷新率，参数为时钟名称和刷新率
-		void SetFramePerSecond(const std::string&, double);
-		// 设置时间缩放，参数为时钟名称和缩放值
-		void SetFrameScale(const std::string&, double);
-		// 重置时钟计时器，参数为时钟名称
-		void ResetClockIns(const std::string&);
-		//-----------tool-----------
-		// usingned long long计数器与ms计数器转换（Debug）
+		/**
+		 * @brief 获取时钟是否超过更新点，是则更新时钟
+		 * @param _name 时钟名称
+		 * @return true 时钟需要更新
+		 * @return false 时钟不需要更新
+		 */
+		bool GetUpdate(const std::string& _name);
+		/**
+		 * @brief 获取时钟是否暂停
+		 * @param _name 时钟名称
+		 * @return true 时钟暂停
+		 * @return false 时钟不暂停
+		 */
+		bool GetPause(const std::string& _name);
+		/**
+		 * @brief 获取时钟刷新率
+		 * @param _name 时钟名称
+		 * @return double 刷新率
+		 */
+		double GetFramePerSecond(const std::string& _name);
+		/**
+		 * @brief 获取时钟自创建以来经过的绝对时长
+		 * @param _name 时钟名称
+		 * @return double 绝对时长
+		 */
+		double GetElapsed(const std::string& _name);
+		/**
+		 * @brief 获取时钟自上一刷新节点经过的绝对时长
+		 * @param _name 时钟名称
+		 * @return double 绝对时长
+		 */
+		double GetTick(const std::string& _name);
+		/**
+		 * @brief 获取时钟自创建以来经过的相对时长
+		 * @param _name 时钟名称
+		 * @return double 相对时长
+		 */
+		double GetElapsedRelative(const std::string& _name);
+		/**
+		 * @brief 获取时钟自上一刷新节点经过的相对时长
+		 * @param _name 时钟名称
+		 * @return double 相对时长
+		 */
+		double GetTickRelative(const std::string& _name);
+		/**
+		 * @brief 设置时钟暂停状态
+		 * @param _name 时钟名称
+		 * @param _pause true表示暂停，false表示继续
+		 */
+		void SetPause(const std::string& _name, bool _pause);
+		/**
+		 * @brief 设置时钟刷新率
+		 * @param _name 时钟名称
+		 * @param _fps 刷新率
+		 */
+		void SetFramePerSecond(const std::string& _name, double _fps);
+		/**
+		 * @brief 设置时钟的时间缩放
+		 * @param _name 时钟名称
+		 * @param _scale 缩放值
+		 */
+		void SetFrameScale(const std::string& _name, double _scale);
+		/**
+		 * @brief 重置时钟的计时器
+		 * @param _name 时钟名称
+		 */
+		void ResetClockIns(const std::string& _name);
+		/**
+		 * @brief 计数器转换（用于调试），将 unsigned long long 类型的计数器转换为毫秒计数器
+		 * @param time_ull unsigned long long 类型的计数器
+		 * @return 转换后的毫秒计数器
+		 */
 		inline int ull2ms_freq(ull time_ull)
 		{
 			auto freq = getCycleAndFreqIns().second;
 			return (time_ull * 1000 / freq);
 		}
+
 #ifdef EVENT_SYSTEM
-		// 添加事件至时钟
-		void AddEvent(const std::string&, const std::string& event);
-		// 移除事件
-		void RemoveEvent(const std::string&, const std::string& event);
-		// 获取事件列表
-		std::vector<std::string>& GetEventList(const std::string&);
-		// 清空事件列表
-		void ClearEventList(const std::string&);
+		/**
+		 * @brief 将事件添加至指定时钟
+		 * @param _name 时钟名称
+		 * @param event 事件名称
+		 */
+		void AddEvent(const std::string& _name, const std::string& event);
+		/**
+		 * @brief 移除指定时钟中的事件
+		 * @param _name 时钟名称
+		 * @param event 事件名称
+		 */
+		void RemoveEvent(const std::string& _name, const std::string& event);
+		/**
+		 * @brief 获取指定时钟中的事件列表
+		 * @param _name 时钟名称
+		 * @return 事件列表
+		 */
+		std::vector<std::string>& GetEventList(const std::string& _name);
+		/**
+		 * @brief 清空指定时钟中的事件列表
+		 * @param _name 时钟名称
+		 */
+		void ClearEventList(const std::string& _name);
 #endif // EVENT_SYSTEM
-		void DEBUG(const std::string&);
-		~Clock() = default;
+		/**
+		 * @brief 输出调试信息
+		 * @param message 调试信息
+		 */
+		void DEBUG(const std::string& message);
+		~Clock() = default;	///<析构函数
 	};
 
 	Clock& Clock::Instance()
@@ -220,18 +403,18 @@ namespace TanmiEngine
 		return clk;
 	}
 
-	inline bool Clock::NewClock(const std::string& str, double FPS = 60.0f)
+	inline bool Clock::NewClock(const std::string& _name, double _fps = 60.0f)
 	{
 		try
 		{
-			if (clockMap.contains(str))
+			if (clockMap.contains(_name))
 				throw ClockNameExistException();
-			if (FPS<0 || FPS>MAX_FRAME_RATE_PER_SECOND)
+			if (_fps<0 || _fps>MAX_FRAME_RATE_PER_SECOND)
 				throw ClockOutOfRangeException();
 			auto pair = getCycleAndFreqIns();
 			auto clkelem = std::make_shared<ClockElem>
-				(str, pair.first, 1.0f / FPS * pair.second, 1.0f, false);
-			clockMap[str] = clkelem;
+				(_name, pair.first, 1.0f / _fps * pair.second, 1.0f, false);
+			clockMap[_name] = clkelem;
 		}
 		catch (ClockException& e)
 		{
@@ -241,14 +424,14 @@ namespace TanmiEngine
 		return true;
 	}
 
-	inline bool Clock::EraseClock(const std::string& str)
+	inline bool Clock::EraseClock(const std::string& _name)
 	{
 		try
 		{
 			auto c = clockMap.begin();
 			for (c; c != clockMap.end(); c++)
 			{
-				if (c->first == str)
+				if (c->first == _name)
 				{
 					clockMap.erase(c);
 					return true;
@@ -264,9 +447,9 @@ namespace TanmiEngine
 		return false;
 	}
 
-	inline bool Clock::CopyClock(const std::string& str, const std::string& newclk)
+	inline bool Clock::CopyClock(const std::string& _name, const std::string& newclk)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (clockMap.contains(newclk))
@@ -283,14 +466,14 @@ namespace TanmiEngine
 		return false;
 	}
 
-	inline bool Clock::GetUpdate(const std::string& str = "Global")
+	inline bool Clock::GetUpdate(const std::string& _name = "Global")
 	{
-		return this->isUpdate(str);
+		return this->isUpdate(_name);
 	}
 
-	inline bool Clock::GetPause(const std::string& str)
+	inline bool Clock::GetPause(const std::string& _name)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -303,9 +486,9 @@ namespace TanmiEngine
 		return e->pause;
 	}
 
-	inline double Clock::GetFramePerSecond(const std::string& str = "Global")
+	inline double Clock::GetFramePerSecond(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -318,9 +501,9 @@ namespace TanmiEngine
 		return (this->getFreqNow(e) / e->update_tick);
 	}
 
-	inline double Clock::GetElapsed(const std::string& str = "Global")
+	inline double Clock::GetElapsed(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -336,9 +519,9 @@ namespace TanmiEngine
 		return 0;
 	}
 
-	inline double Clock::GetElapsedRelative(const std::string& str = "Global")
+	inline double Clock::GetElapsedRelative(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -355,9 +538,9 @@ namespace TanmiEngine
 		return 0;
 	}
 
-	inline double Clock::GetTick(const std::string& str = "Global")
+	inline double Clock::GetTick(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -373,9 +556,9 @@ namespace TanmiEngine
 		return 0.0f;
 	}
 
-	inline double Clock::GetTickRelative(const std::string& str = "Global")
+	inline double Clock::GetTickRelative(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -391,14 +574,14 @@ namespace TanmiEngine
 		return 0.0f;
 	}
 
-	inline void Clock::SetPause(const std::string& str, bool is_pause)
+	inline void Clock::SetPause(const std::string& _name, bool _pause)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
 				throw ClockNotFoundException();
-			if (is_pause == e->pause)
+			if (_pause == e->pause)
 			{
 				return;
 			}
@@ -423,17 +606,17 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::SetFramePerSecond(const std::string& str, double i)
+	inline void Clock::SetFramePerSecond(const std::string& _name, double _fps)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
 				throw ClockNotFoundException();
-			else if (i<MIN_FRAME_RATE_PER_SECOND || i>MAX_FRAME_RATE_PER_SECOND)
+			else if (_fps<MIN_FRAME_RATE_PER_SECOND || _fps>MAX_FRAME_RATE_PER_SECOND)
 				throw ClockOutOfRangeException();
 			std::lock_guard<std::mutex> lock(e->lock);
-			e->update_tick = 1.0f / i * this->getFreqNow(e);
+			e->update_tick = 1.0f / _fps * this->getFreqNow(e);
 		}
 		catch (ClockException& exp)
 		{
@@ -441,9 +624,9 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::SetFrameScale(const std::string& str, double s)
+	inline void Clock::SetFrameScale(const std::string& _name, double s)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -459,9 +642,9 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::ResetClockIns(const std::string& str)
+	inline void Clock::ResetClockIns(const std::string& _name)
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		try
 		{
 			if (e.get() == nullptr)
@@ -476,9 +659,9 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::DEBUG(const std::string& str = "Global")
+	inline void Clock::DEBUG(const std::string& _name = "Global")
 	{
-		auto e = this->getIterator(str);
+		auto e = this->getIterator(_name);
 		//auto pair = getCycleAndFreqIns();
 		//std::cout << pair.first << " " << pair.second << std::endl;
 		std::cout << "cycle:" << (this->getCycleNow(e) - e->ins_cycle) * 1000 << std::endl;
@@ -491,16 +674,16 @@ namespace TanmiEngine
 
 	Clock::Clock()
 	{
-		std::string str("Global");
+		std::string _name("Global");
 		auto pair = getCycleAndFreqIns();
 		std::shared_ptr<ClockElem> clk = std::make_shared<ClockElem>
-			(str, pair.first, 1.0f / 60.0f * pair.second, 1.0f, false);
-		clockMap[str] = clk;
+			(_name, pair.first, 1.0f / 60.0f * pair.second, 1.0f, false);
+		clockMap[_name] = clk;
 	}
 
-	inline std::shared_ptr<ClockElem> Clock::getIterator(const std::string& str)
+	inline std::shared_ptr<ClockElem> Clock::getIterator(const std::string& _name)
 	{
-		auto search = clockMap.find(str);
+		auto search = clockMap.find(_name);
 		if (search != clockMap.end())
 		{
 			return search->second;
@@ -517,12 +700,12 @@ namespace TanmiEngine
 		return std::pair<ull, ull>(temp_ull_clk, temp_lint_clk.QuadPart);
 	}
 
-	inline ull& Clock::getCycleNow(const std::string& str)
+	inline ull& Clock::getCycleNow(const std::string& _name)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
-			i = getIterator(str);
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 			std::lock_guard<std::mutex> lock(i->templock);
@@ -557,12 +740,12 @@ namespace TanmiEngine
 		return void_ull;
 	}
 
-	inline ull& Clock::getFreqNow(const std::string& str)
+	inline ull& Clock::getFreqNow(const std::string& _name)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
-			i = getIterator(str);
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 
@@ -601,12 +784,12 @@ namespace TanmiEngine
 		return void_ull;
 	}
 
-	inline bool Clock::isUpdate(const std::string& str)
+	inline bool Clock::isUpdate(const std::string& _name)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
-			i = getIterator(str);
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 
@@ -688,12 +871,12 @@ namespace TanmiEngine
 	}
 
 #ifdef EVENT_SYSTEM
-	inline void Clock::AddEvent(const std::string& str, const std::string& event)
+	inline void Clock::AddEvent(const std::string& _name, const std::string& event)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
-			i = getIterator(str);
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 			EventSystem& eventsystem = EventSystem::Instance();
@@ -708,12 +891,12 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::RemoveEvent(const std::string& str, const std::string& event)
+	inline void Clock::RemoveEvent(const std::string& _name, const std::string& event)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
-			i = getIterator(str);
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 			EventSystem& eventsystem = EventSystem::Instance();
@@ -737,11 +920,12 @@ namespace TanmiEngine
 		}
 	}
 
-	inline std::vector<std::string>& Clock::GetEventList(const std::string& str)
+	inline std::vector<std::string>& Clock::GetEventList(const std::string& _name)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 			return i->eventList;
@@ -752,11 +936,12 @@ namespace TanmiEngine
 		}
 	}
 
-	inline void Clock::ClearEventList(const std::string&)
+	inline void Clock::ClearEventList(const std::string& _name)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
 		try
 		{
+			i = getIterator(_name);
 			if (i.get() == nullptr)
 				throw ClockNotFoundException();
 			i->eventList.clear();
