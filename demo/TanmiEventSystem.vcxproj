@@ -20,9 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\demo\demoEvent.hpp" />
+    <ClInclude Include="..\src\TanmiClock.hpp" />
     <ClInclude Include="..\src\TanmiClock_64.hpp" />
+    <ClInclude Include="..\src\TanmiEvent.hpp" />
+    <ClInclude Include="..\src\TanmiEventHandler.hpp" />
+    <ClInclude Include="..\src\TanmiEventSystem.hpp" />
     <ClInclude Include="..\src\TanmiEventSystem_64.hpp" />
+    <ClInclude Include="..\src\TanmiListener.hpp" />
     <ClInclude Include="..\src\TanmiListener_64.hpp" />
+    <ClInclude Include="..\src\TanmiMessageQuene.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo.cpp" />
