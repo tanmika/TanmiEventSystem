@@ -116,9 +116,17 @@ namespace TanmiEngine
 		void TriggerEvent(const Event& event);
 
 		// 触发事件
+		void TriggerEvent(const EventID eventID);
+
+		// 触发事件
 		// event: 事件名称
 		// ms: 事件触发时的更新间隔
 		void TriggerEventUpdate(const Event& event, double ms);
+
+		// 触发事件
+		// eventID: 事件ID
+		// ms: 事件触发时的更新间隔
+		void TriggerEventUpdate(const EventID eventID, double ms);
 
 		// 添加事件
 		// event: 事件名称
@@ -234,6 +242,50 @@ namespace TanmiEngine
 		}
 	}
 
+	inline void EventSystem::TriggerEvent(const EventID eventID)
+	{
+		try
+		{
+			// 寻找事件
+			auto range = EventList.equal_range(eventID);
+			if (std::distance(range.first, range.second) == 0)
+			{
+				throw EventSystemEventNotFoundException();
+			}
+			// 预处理
+			if (eventsPreprocess[eventID]() == false)
+				return;
+			// 定位
+			auto& it = range.first;
+			auto& it_end = range.second;
+			std::lock_guard<std::mutex> lock(mtx_temp);
+			// 压缓冲
+			while (it != it_end)
+			{
+				if (!it->second.expired())
+				{
+					listenersToWake.push_back(it->second.lock());
+					it++;
+				}
+				else
+				{
+					EventList.erase(it++);
+				}
+			}
+			// 通知
+			for (auto& listener : listenersToWake)
+			{
+				messageHandler->Post(eventID, listener);
+			}
+			// 清空缓冲
+			listenersToWake.clear();
+		}
+		catch (EventSystemException& e)
+		{
+			std::cout << "::EventSystem::WakeEvent()" << e.what() << std::endl;
+		}
+	}
+
 	inline void EventSystem::TriggerEventUpdate(const Event& event, double ms)
 	{
 		try
@@ -268,6 +320,50 @@ namespace TanmiEngine
 			for (auto& listener : listenersToWake)
 			{
 				messageHandlerUpdate->Post(event.ID, listener, ms);
+			}
+			// 清空缓冲
+			listenersToWake.clear();
+		}
+		catch (EventSystemException& e)
+		{
+			std::cout << "::EventSystem::TriggerEventUpdate()" << e.what() << std::endl;
+		}
+	}
+
+	inline void EventSystem::TriggerEventUpdate(const EventID eventID, double ms)
+	{
+		try
+		{
+			// 寻找事件
+			auto range = EventList.equal_range(eventID);
+			if (std::distance(range.first, range.second) == 0)
+			{
+				throw EventSystemEventNotFoundException();
+			}
+			// 预处理
+			if (eventsPreprocess[eventID]() == false)
+				return;
+			// 定位
+			auto& it = range.first;
+			auto& it_end = range.second;
+			std::lock_guard<std::mutex> lock(mtx_temp);
+			// 压缓冲
+			while (it != it_end)
+			{
+				if (!it->second.expired())
+				{
+					listenersToWake.push_back(it->second.lock());
+					it++;
+				}
+				else
+				{
+					EventList.erase(it++);
+				}
+			}
+			// 通知
+			for (auto& listener : listenersToWake)
+			{
+				messageHandlerUpdate->Post(eventID, listener, ms);
 			}
 			// 清空缓冲
 			listenersToWake.clear();

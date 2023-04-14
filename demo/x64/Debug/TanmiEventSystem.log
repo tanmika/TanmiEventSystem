@@ -5,7 +5,7 @@ I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(493,38): warning C4244: “初�
 I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(583,33): warning C4244: “=”: 从“double”转换到“TanmiEngine::ull”，可能丢失数据
 I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(601,15): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
 I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(777,25): warning C4244: “+=”: 从“float”转换到“TanmiEngine::ull”，可能丢失数据
-I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(829,25): warning C4244: “+=”: 从“float”转换到“TanmiEngine::ull”，可能丢失数据
+I:\EnginePrj\TanmiEventSystem\src\TanmiClock.hpp(820,25): warning C4244: “+=”: 从“float”转换到“TanmiEngine::ull”，可能丢失数据
 E:\software\VS2022\VC\Tools\MSVC\14.35.32215\include\xutility(261,71): warning C4244: “参数”: 从“_Ty”转换到“TanmiEngine::ull”，可能丢失数据
           with
           [
