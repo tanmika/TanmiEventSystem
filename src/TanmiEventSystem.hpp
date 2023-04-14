@@ -47,6 +47,18 @@ namespace TanmiEngine
 		}
 	};
 
+	// 事件类类型
+	template<typename T>
+	concept EventBase = std::is_base_of_v<Event, T>;
+
+	// 消息处理器类类型
+	template<typename T>
+	concept MessageHandlerBase = std::is_base_of_v<MessageHandler, T>;
+
+	// 消息处理器更新类类型
+	template<typename T>
+	concept MessageHandlerUpdateBase = std::is_base_of_v<MessageHandlerUpdate, T>;
+
 	class EventSystem
 	{
 	private:
@@ -79,11 +91,26 @@ namespace TanmiEngine
 		// 注册消息处理器
 		void RegisterMessageHandler(std::shared_ptr<MessageHandler> _messageHandler);
 
+		// 注册并返回消息处理器
+		template<MessageHandlerBase T, typename... P>
+		std::shared_ptr<T> RegisterMessageHandler(P...pram);
+
 		// 注册消息处理器
 		void RegisterMessageHandlerUpdate(std::shared_ptr<MessageHandlerUpdate> _messageHandlerUpdate);
 
+		// 注册并返回消息处理器
+		template<MessageHandlerUpdateBase T, typename... P>
+		std::shared_ptr<T> RegisterMessageHandlerUpdate(P...pram);
+
+		// 使用默认消息处理器
+		void UseMessageHandlerDefault();
+
 		// 注册事件
 		void RegisterEvent(Event& event);
+
+		// 新建并注册事件
+		template<EventBase T>
+		std::shared_ptr<T> NewAndRegisterEvent();
 
 		// 触发事件
 		void TriggerEvent(const Event& event);
@@ -131,6 +158,8 @@ namespace TanmiEngine
 
 	inline void EventSystem::RegisterMessageHandler(std::shared_ptr<MessageHandler> _messageHandler)
 	{
+		if (isMessageHandlerRegisted)
+			messageHandler->Exit();
 		messageHandler = _messageHandler;
 		std::thread thread(&MessageHandler::Run, _messageHandler.get());
 		thread.detach();
@@ -139,10 +168,18 @@ namespace TanmiEngine
 
 	inline void EventSystem::RegisterMessageHandlerUpdate(std::shared_ptr<MessageHandlerUpdate> _messageHandlerUpdate)
 	{
+		if (isMessageHandlerUpdateRegisted)
+			messageHandlerUpdate->Exit();
 		messageHandlerUpdate = _messageHandlerUpdate;
 		std::thread thread(&MessageHandlerUpdate::Run, _messageHandlerUpdate.get());
 		thread.detach();
 		isMessageHandlerUpdateRegisted = true;
+	}
+
+	inline void EventSystem::UseMessageHandlerDefault()
+	{
+		auto messageHandler = RegisterMessageHandler<MessageHandler>();
+		auto messageHandlerUpdate = RegisterMessageHandlerUpdate<MessageHandlerUpdate>();
 	}
 
 	inline void EventSystem::RegisterEvent(Event& event)
@@ -302,18 +339,6 @@ namespace TanmiEngine
 		{
 			std::lock_guard<std::mutex> lock(mtx);
 			bool isExist = false;
-			//1
-			/*auto it = std::remove_if(EventList.begin(), EventList.end(),
-				[&client](const std::multimap<EventID, std::weak_ptr<Listener>>::value_type& pair)
-				{
-					return pair.second.lock() && pair.second.lock() == client;
-				});
-			if (it != EventList.end())
-			{
-				EventList.erase(it, EventList.end());
-				isExist = true;
-			}*/
-			//2
 			auto it = EventList.begin();
 			while (it != EventList.end())
 			{
@@ -376,5 +401,59 @@ namespace TanmiEngine
 		{
 			messageHandlerUpdate->Exit();
 		}
+	}
+
+	template<MessageHandlerBase T, typename ...P>
+	inline std::shared_ptr<T> EventSystem::RegisterMessageHandler(P ...pram)
+	{
+		std::shared_ptr<T> _messageHandler;
+		if constexpr(sizeof ...(pram) == 0)
+		{
+			_messageHandler = std::make_shared<T>();
+		}
+		else
+		{
+			_messageHandler = std::make_shared<T>(std::forward<P>(pram)...);
+		}
+
+		if (isMessageHandlerRegisted)
+			messageHandler->Exit();
+		messageHandler = _messageHandler;
+
+		std::thread thread(&MessageHandler::Run, _messageHandler.get());
+		thread.detach();
+		isMessageHandlerRegisted = true;
+		return _messageHandler;
+	}
+
+	template<MessageHandlerUpdateBase T, typename ...P>
+	inline std::shared_ptr<T> EventSystem::RegisterMessageHandlerUpdate(P ...pram)
+	{
+		std::shared_ptr<T> _messageHandlerUpdate;
+		if constexpr(sizeof ...(pram) == 0)
+		{
+			_messageHandlerUpdate = std::make_shared<T>();
+		}
+		else
+		{
+			_messageHandlerUpdate = std::make_shared<T>(std::forward<P>(pram)...);
+		}
+		
+		if(isMessageHandlerUpdateRegisted)
+			messageHandlerUpdate->Exit();
+		messageHandlerUpdate = _messageHandlerUpdate;
+
+		std::thread thread(&MessageHandlerUpdate::Run, _messageHandlerUpdate.get());
+		thread.detach();
+		isMessageHandlerUpdateRegisted = true;
+		return _messageHandlerUpdate;
+	}
+
+	template<EventBase T>
+	std::shared_ptr<T> EventSystem::NewAndRegisterEvent()
+	{
+		std::shared_ptr<T> event = std::make_shared<T>();
+		RegisterEvent(*event);
+		return event;
 	}
 }

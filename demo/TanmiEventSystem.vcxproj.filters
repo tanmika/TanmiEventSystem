@@ -21,20 +21,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\TanmiEventSystem_64.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\TanmiListener_64.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\TanmiClock_64.hpp">
-      <Filter>头文件\TanmiClock</Filter>
-    </ClInclude>
     <ClInclude Include="..\demo\demoEvent.hpp">
       <Filter>头文件\DemoEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\TanmiClock.hpp">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\TanmiEvent.hpp">
       <Filter>头文件</Filter>
@@ -50,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="..\src\TanmiMessageQuene.hpp">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TanmiClock.hpp">
+      <Filter>头文件\TanmiClock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
