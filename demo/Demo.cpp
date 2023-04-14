@@ -24,13 +24,10 @@ auto main() -> int
 	eventSystem.UseMessageHandlerDefault();
 	auto gameStart = j->GenStart();
 	eventSystem.TriggerEvent(*gameStart);
-	std::cout << std::endl;
+
 	while (j->gameOver != true)
 	{
-		if (clock.GetUpdate(Global))
-		{
-			std::cout << std::endl;
-		}
+		clock.GetUpdate(Global);
 	}
 	return 0;
 }

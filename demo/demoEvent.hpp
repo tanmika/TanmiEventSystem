@@ -1,5 +1,5 @@
 //
-//	Tanmika --2023.4.2
+//	Tanmika --2023.4.14
 //
 #pragma once
 
@@ -205,7 +205,7 @@ inline void Judge::WakeEventUpdate(const EventID event, double ms)
 	}
 	else if (event == eventList[3]->ID)
 	{
-		std::cout << name << ": Round " << totalCount++ << ".\n";
+		std::cout << std::endl << name << ": Round " << totalCount++ << ".\n";
 	}
 }
 

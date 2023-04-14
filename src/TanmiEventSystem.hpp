@@ -59,6 +59,31 @@ namespace TanmiEngine
 	template<typename T>
 	concept MessageHandlerUpdateBase = std::is_base_of_v<MessageHandlerUpdate, T>;
 
+	// 可顺序读取的容器
+	template<typename Container>
+	concept InputRangeContainer = requires(Container c)
+	{
+		requires std::ranges::input_range<Container>;
+	};
+
+	// 可顺序读取的事件容器
+	template<typename Container>
+	concept EventContainer = requires(Container c)
+	{
+		typename Container::value_type;
+			requires std::is_base_of_v<Event, typename Container::value_type>;
+			requires std::ranges::input_range<Container>;
+	};
+
+	// 可顺序读取的监听器指针容器
+	template<typename Container>
+	concept ListenerSptrContainer = requires(Container c)
+	{
+		typename Container::value_type;
+			requires std::derived_from<typename Container::value_type::element_type, Listener>;
+			requires std::ranges::input_range<Container>;
+	};
+
 	class EventSystem
 	{
 	private:
@@ -108,9 +133,21 @@ namespace TanmiEngine
 		// 注册事件
 		void RegisterEvent(Event& event);
 
+		// 使用容器注册事件
+		template<EventContainer T>
+		void RegisterEvent(T& events);
+
 		// 新建并注册事件
 		template<EventBase T>
 		std::shared_ptr<T> NewAndRegisterEvent();
+
+		// 新建并注册指定数量事件
+		template<EventBase T>
+		inline std::vector<std::shared_ptr<T>> NewAndRegisterEvents(int num);
+
+		// 新建并注册指定类型数量事件
+		template<EventBase T, InputRangeContainer C>
+		C NewAndRegisterEvents(int num);
 
 		// 触发事件
 		void TriggerEvent(const Event& event);
@@ -132,6 +169,18 @@ namespace TanmiEngine
 		// event: 事件名称
 		// client: 监听对象
 		void AddEventHandler(const Event& event, std::shared_ptr<Listener> client);
+		
+		// 添加事件
+		// events: 事件名称容器
+		// client: 监听对象
+		template<EventContainer T>
+		void AddEventHandler(const T& events, std::shared_ptr<Listener> client);
+
+		// 添加事件
+		// event: 事件名称
+		// clients: 监听对象容器
+		template<ListenerSptrContainer T>
+		void addEventHandler(const Event& event, const T& clients);
 
 		// 移除事件下特定监听
 		// event: 事件名称
@@ -190,12 +239,55 @@ namespace TanmiEngine
 		auto messageHandlerUpdate = RegisterMessageHandlerUpdate<MessageHandlerUpdate>();
 	}
 
+	template<EventBase T>
+	std::shared_ptr<T> EventSystem::NewAndRegisterEvent()
+	{
+		std::shared_ptr<T> event = std::make_shared<T>();
+		RegisterEvent(*event);
+		return event;
+	}
+
+	template<EventBase T>
+	inline std::vector<std::shared_ptr<T>> EventSystem::NewAndRegisterEvents(int num)
+	{
+		std::vector<std::shared_ptr<T>> container;
+		while (num--)
+		{
+			std::shared_ptr<T> event = std::make_shared<T>();
+			RegisterEvent(*event);
+			container.push_back(event);
+		}
+		return container;
+	}
+
+	template<EventBase T, InputRangeContainer C>
+	inline C EventSystem::NewAndRegisterEvents(int num)
+	{
+		C container;
+		while (num--)
+		{
+			std::shared_ptr<T> event = std::make_shared<T>();
+			RegisterEvent(*event);
+			container.push_back(event);
+		}
+		return container;
+	}
+
 	inline void EventSystem::RegisterEvent(Event& event)
 	{
 		static int eventID = 1;
 		auto f = std::bind(&Event::preProcess, event);
 		eventsPreprocess.push_back(f);
 		event.ID = eventID++;
+	}
+
+	template<EventContainer T>
+	inline void EventSystem::RegisterEvent(T& events)
+	{
+		for (auto& event : events)
+		{
+			RegisterEvent(event);
+		}
 	}
 
 	inline void EventSystem::TriggerEvent(const Event& event)
@@ -381,6 +473,28 @@ namespace TanmiEngine
 		EventList.insert(std::make_pair(event.ID, std::move(_client)));
 	}
 
+	template<EventContainer T>
+	inline void EventSystem::AddEventHandler(const T& events, std::shared_ptr<Listener> client)
+	{
+		std::lock_guard<std::mutex> lock(mtx);
+		std::weak_ptr<Listener> _client = client;
+		for (auto e : events)
+		{
+			EventList.insert(std::make_pair(e.ID, _client));
+		}
+	}
+
+	template<ListenerSptrContainer T>
+	inline void EventSystem::addEventHandler(const Event& event, const T& clients)
+	{
+		std::lock_guard<std::mutex> lock(mtx);
+		for (auto e : clients)
+		{
+			std::weak_ptr<Listener> _client = e;
+			EventList.insert(std::make_pair(event.ID, std::move(_client)));
+		}
+	}
+
 	inline void EventSystem::RemoveEventHandler(const Event& event, std::shared_ptr<Listener> client)
 	{
 		try
@@ -410,6 +524,7 @@ namespace TanmiEngine
 			std::cout << "::EventSystem::AddEventHandler()" << e.what() << std::endl;
 		}
 	}
+
 	inline void EventSystem::RemoveAllEventForEventName(const Event& event)
 	{
 		try
@@ -503,7 +618,7 @@ namespace TanmiEngine
 	inline std::shared_ptr<T> EventSystem::RegisterMessageHandler(P ...pram)
 	{
 		std::shared_ptr<T> _messageHandler;
-		if constexpr(sizeof ...(pram) == 0)
+		if constexpr (sizeof ...(pram) == 0)
 		{
 			_messageHandler = std::make_shared<T>();
 		}
@@ -526,7 +641,7 @@ namespace TanmiEngine
 	inline std::shared_ptr<T> EventSystem::RegisterMessageHandlerUpdate(P ...pram)
 	{
 		std::shared_ptr<T> _messageHandlerUpdate;
-		if constexpr(sizeof ...(pram) == 0)
+		if constexpr (sizeof ...(pram) == 0)
 		{
 			_messageHandlerUpdate = std::make_shared<T>();
 		}
@@ -534,8 +649,8 @@ namespace TanmiEngine
 		{
 			_messageHandlerUpdate = std::make_shared<T>(std::forward<P>(pram)...);
 		}
-		
-		if(isMessageHandlerUpdateRegisted)
+
+		if (isMessageHandlerUpdateRegisted)
 			messageHandlerUpdate->Exit();
 		messageHandlerUpdate = _messageHandlerUpdate;
 
@@ -543,13 +658,5 @@ namespace TanmiEngine
 		thread.detach();
 		isMessageHandlerUpdateRegisted = true;
 		return _messageHandlerUpdate;
-	}
-
-	template<EventBase T>
-	std::shared_ptr<T> EventSystem::NewAndRegisterEvent()
-	{
-		std::shared_ptr<T> event = std::make_shared<T>();
-		RegisterEvent(*event);
-		return event;
 	}
 }
