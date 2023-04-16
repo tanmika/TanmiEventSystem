@@ -1,0 +1,4 @@
+<map id="TanmiEngine::Clock::GetTickRelative" name="TanmiEngine::Clock::GetTickRelative">
+<area shape="rect" id="node1" title="获取时钟自上一刷新节点经过的相对时长" alt="" coords="5,5,144,45"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock_exception.html#a67bee5a448d21421a6bb74cba2b1ab6e" title=" " alt="" coords="192,5,388,45"/>
+</map>

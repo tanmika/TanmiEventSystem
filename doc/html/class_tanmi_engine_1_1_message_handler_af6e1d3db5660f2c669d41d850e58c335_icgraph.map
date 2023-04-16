@@ -1,0 +1,5 @@
+<map id="TanmiEngine::MessageHandler::HandleMessage" name="TanmiEngine::MessageHandler::HandleMessage">
+<area shape="rect" id="node1" title="处理消息" alt="" coords="517,5,720,45"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_message_handler.html#a0d4387ae50687394a0f66f5f69141530" title="处理消息队列" alt="" coords="236,13,469,38"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_event_system.html#a7b521eb53a9bd7517f82beb8ae539385" title="注册消息处理器" alt="" coords="5,5,188,45"/>
+</map>

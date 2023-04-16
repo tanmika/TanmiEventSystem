@@ -1,0 +1,20 @@
+<map id="TanmiEngine::ClockException::what" name="TanmiEngine::ClockException::what">
+<area shape="rect" id="node1" title=" " alt="" coords="205,517,401,557"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock.html#af4cc9023469bf145f81dfb7dded2e3d5" title="将事件添加至指定时钟" alt="" coords="12,5,151,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_clock.html#a89841672f384fbfe2df2b51d2fb5cd3d" title="清空指定时钟中的事件列表" alt="" coords="12,69,151,109"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_clock.html#af329e1753ca69176c2b72b4111766112" title="复制时钟" alt="" coords="12,133,151,173"/>
+<area shape="rect" id="node5" href="$class_tanmi_engine_1_1_clock.html#abb9d9f974596f55bd2c361a493cf92c2" title="移除时钟" alt="" coords="12,197,151,237"/>
+<area shape="rect" id="node6" href="$class_tanmi_engine_1_1_clock.html#a60b5cff26231f29793956d3015e1063e" title="获取时钟自创建以来经过的绝对时长" alt="" coords="12,261,151,301"/>
+<area shape="rect" id="node7" href="$class_tanmi_engine_1_1_clock.html#a83e6338a71708c3978d1d8587fde6e73" title="获取时钟自创建以来经过的相对时长" alt="" coords="10,325,153,365"/>
+<area shape="rect" id="node8" href="$class_tanmi_engine_1_1_clock.html#a868f2792f38591a8af29d8a4c48c9c6b" title="获取指定时钟中的事件列表" alt="" coords="12,389,151,429"/>
+<area shape="rect" id="node9" href="$class_tanmi_engine_1_1_clock.html#a1b0b958de2f6362bc1ea9cb62f53e8aa" title="获取时钟刷新率" alt="" coords="5,453,157,493"/>
+<area shape="rect" id="node10" href="$class_tanmi_engine_1_1_clock.html#a36a6434b45bce46883f9c601ac29de25" title="获取时钟是否暂停" alt="" coords="12,517,151,557"/>
+<area shape="rect" id="node11" href="$class_tanmi_engine_1_1_clock.html#ae442497d92e71563acfc19dd8aca64da" title="获取时钟自上一刷新节点经过的绝对时长" alt="" coords="12,581,151,621"/>
+<area shape="rect" id="node12" href="$class_tanmi_engine_1_1_clock.html#a74760d3c6281ed322ccb0c74178351a7" title="获取时钟自上一刷新节点经过的相对时长" alt="" coords="12,645,151,685"/>
+<area shape="rect" id="node13" href="$class_tanmi_engine_1_1_clock.html#a1fa35fa412af8a8e8aee4a3a1b2cfc6e" title="新建时钟" alt="" coords="12,709,151,749"/>
+<area shape="rect" id="node14" href="$class_tanmi_engine_1_1_clock.html#ad80fb976c19352d2c313b68ffe3ef4c9" title="移除指定时钟中的事件" alt="" coords="12,773,151,813"/>
+<area shape="rect" id="node15" href="$class_tanmi_engine_1_1_clock.html#a53e1ae9c8382161cabde6391e7dd2b1c" title="重置时钟的计时器" alt="" coords="12,837,151,877"/>
+<area shape="rect" id="node16" href="$class_tanmi_engine_1_1_clock.html#a93e02393621feb5f5a683b89cf5ab24b" title="设置时钟刷新率" alt="" coords="6,901,157,941"/>
+<area shape="rect" id="node17" href="$class_tanmi_engine_1_1_clock.html#a19487c8c00ad6e854083a6b34e7e6a0c" title="设置时钟的时间缩放" alt="" coords="12,965,151,1005"/>
+<area shape="rect" id="node18" href="$class_tanmi_engine_1_1_clock.html#a35e957b8ffa8a9c6809d91d825b882d3" title="设置时钟暂停状态" alt="" coords="12,1029,151,1069"/>
+</map>

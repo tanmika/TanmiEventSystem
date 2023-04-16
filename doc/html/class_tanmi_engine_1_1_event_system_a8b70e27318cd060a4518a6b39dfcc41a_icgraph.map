@@ -1,0 +1,4 @@
+<map id="TanmiEngine::EventSystem::IsEventExistNoException" name="TanmiEngine::EventSystem::IsEventExistNoException">
+<area shape="rect" id="node1" title="判断指定事件是否存在，无异常检测" alt="" coords="192,5,375,45"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock.html#af4cc9023469bf145f81dfb7dded2e3d5" title="将事件添加至指定时钟" alt="" coords="5,5,144,45"/>
+</map>

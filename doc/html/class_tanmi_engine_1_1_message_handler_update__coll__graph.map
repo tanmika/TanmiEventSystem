@@ -1,0 +1,6 @@
+<map id="TanmiEngine::MessageHandlerUpdate" name="TanmiEngine::MessageHandlerUpdate">
+<area shape="rect" id="node1" title="事件处理基类（带有时间参数）" alt="" coords="325,85,528,125"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_message_queue.html" title=" " alt="" coords="5,5,213,60"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_message_queue.html" title=" " alt="" coords="11,85,207,125"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_message_queue.html" title=" " alt="" coords="11,149,207,189"/>
+</map>

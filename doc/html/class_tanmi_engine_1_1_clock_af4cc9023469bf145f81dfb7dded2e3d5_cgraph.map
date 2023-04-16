@@ -1,0 +1,6 @@
+<map id="TanmiEngine::Clock::AddEvent" name="TanmiEngine::Clock::AddEvent">
+<area shape="rect" id="node1" title="将事件添加至指定时钟" alt="" coords="5,69,144,109"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system.html#a23c22f0f25c75a54e65ff2c47274de6a" title=" " alt="" coords="199,5,381,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_event_system.html#a8b70e27318cd060a4518a6b39dfcc41a" title="判断指定事件是否存在，无异常检测" alt="" coords="199,69,381,109"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_clock_exception.html#a67bee5a448d21421a6bb74cba2b1ab6e" title=" " alt="" coords="192,133,388,173"/>
+</map>

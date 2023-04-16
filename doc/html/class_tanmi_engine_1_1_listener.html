@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TanmiEventSystem: TanmiEngine::Listener类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TanmiEventSystem
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="concepts.html"><span>概念</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>类列表</span></a></li>
+      <li><a href="classes.html"><span>类索引</span></a></li>
+      <li><a href="inherits.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>类成员</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_tanmi_engine.html">TanmiEngine</a></li><li class="navelem"><a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="class_tanmi_engine_1_1_listener-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">TanmiEngine::Listener类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>监听器基类  
+ <a href="class_tanmi_engine_1_1_listener.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_tanmi_listener_8hpp_source.html">TanmiListener.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7dd19a4c3e0c0021e9ed4320c2862ca1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_listener.html#a7dd19a4c3e0c0021e9ed4320c2862ca1">Listener</a> ()=default</td></tr>
+<tr class="memdesc:a7dd19a4c3e0c0021e9ed4320c2862ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数  <br /></td></tr>
+<tr class="separator:a7dd19a4c3e0c0021e9ed4320c2862ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0f7efe5b886c895bd2c9d649100d0e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_listener.html#acd0f7efe5b886c895bd2c9d649100d0e">~Listener</a> ()=default</td></tr>
+<tr class="memdesc:acd0f7efe5b886c895bd2c9d649100d0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认析构函数  <br /></td></tr>
+<tr class="separator:acd0f7efe5b886c895bd2c9d649100d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f6a60e7008d190f29f644acb42b959b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_listener.html#a8f6a60e7008d190f29f644acb42b959b">WakeEvent</a> (const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a> event)=0</td></tr>
+<tr class="memdesc:a8f6a60e7008d190f29f644acb42b959b"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件响应函数  <br /></td></tr>
+<tr class="separator:a8f6a60e7008d190f29f644acb42b959b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa446e3524f6b8dc963544ee1ea3c90c6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_listener.html#aa446e3524f6b8dc963544ee1ea3c90c6">WakeEventUpdate</a> (const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a> event, double ms)=0</td></tr>
+<tr class="separator:aa446e3524f6b8dc963544ee1ea3c90c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>监听器基类 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_listener_8hpp_source.html">TanmiListener.hpp</a> 第 <a class="el" href="_tanmi_listener_8hpp_source.html#l00014">14</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a7dd19a4c3e0c0021e9ed4320c2862ca1" name="a7dd19a4c3e0c0021e9ed4320c2862ca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dd19a4c3e0c0021e9ed4320c2862ca1">&#9670;&#160;</a></span>Listener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TanmiEngine::Listener::Listener </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>默认构造函数 </p>
+
+</div>
+</div>
+<a id="acd0f7efe5b886c895bd2c9d649100d0e" name="acd0f7efe5b886c895bd2c9d649100d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd0f7efe5b886c895bd2c9d649100d0e">&#9670;&#160;</a></span>~Listener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual TanmiEngine::Listener::~Listener </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>默认析构函数 </p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a8f6a60e7008d190f29f644acb42b959b" name="a8f6a60e7008d190f29f644acb42b959b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f6a60e7008d190f29f644acb42b959b">&#9670;&#160;</a></span>WakeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TanmiEngine::Listener::WakeEvent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a>&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>事件响应函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>事件ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa446e3524f6b8dc963544ee1ea3c90c6" name="aa446e3524f6b8dc963544ee1ea3c90c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa446e3524f6b8dc963544ee1ea3c90c6">&#9670;&#160;</a></span>WakeEventUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TanmiEngine::Listener::WakeEventUpdate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a>&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>I:/EnginePrj/TanmiEventSystem/src/<a class="el" href="_tanmi_listener_8hpp_source.html">TanmiListener.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

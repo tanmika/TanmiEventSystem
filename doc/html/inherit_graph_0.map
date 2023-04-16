@@ -1,0 +1,11 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="node1" title=" " alt="" coords="5,205,109,230"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock_exception.html" title="Clock 类异常基类。" alt="" coords="157,109,353,134"/>
+<area shape="rect" id="node6" href="$class_tanmi_engine_1_1_event_system_exception.html" title="EventSystem 类异常基类。" alt="" coords="164,229,347,269"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_clock_event_not_found_exception.html" title="时钟事件未找到异常类。" alt="" coords="411,5,601,45"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_clock_not_found_exception.html" title="时钟未找到异常类。" alt="" coords="409,69,603,109"/>
+<area shape="rect" id="node5" href="$class_tanmi_engine_1_1_clock_out_of_range_exception.html" title="数值越界异常类。" alt="" coords="401,133,611,173"/>
+<area shape="rect" id="node7" href="$class_tanmi_engine_1_1_event_system_event_not_found_exception.html" title="事件未找到异常" alt="" coords="415,197,597,237"/>
+<area shape="rect" id="node8" href="$class_tanmi_engine_1_1_event_system_event_not_registed_exception.html" title="事件未注册异常" alt="" coords="415,261,597,301"/>
+<area shape="rect" id="node9" href="$class_tanmi_engine_1_1_event_system_listener_not_found_exception.html" title="监听器未找到异常" alt="" coords="415,325,597,365"/>
+</map>

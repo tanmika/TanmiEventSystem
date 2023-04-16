@@ -1,0 +1,7 @@
+<map id="TanmiEngine::MessageQueue::Pop" name="TanmiEngine::MessageQueue::Pop">
+<area shape="rect" id="node1" title="从队列中取出下一个消息T并将其弹出队列" alt="" coords="551,46,777,71"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_message_handler.html#a0d4387ae50687394a0f66f5f69141530" title="处理消息队列" alt="" coords="269,15,503,41"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_message_handler_update.html#ab0b1ed19f893e413a0bbb89a7028c7cf" title="处理消息队列" alt="" coords="285,67,487,107"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_event_system.html#a7b521eb53a9bd7517f82beb8ae539385" title="注册消息处理器" alt="" coords="22,5,205,45"/>
+<area shape="rect" id="node5" href="$class_tanmi_engine_1_1_event_system.html#a000187d3c35be133df0a430ed20bbaa4" title="注册消息处理器（带有时间参数）" alt="" coords="5,69,221,109"/>
+</map>

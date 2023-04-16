@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TanmiEventSystem: TanmiEngine::MessageHandler类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TanmiEventSystem
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="concepts.html"><span>概念</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>类列表</span></a></li>
+      <li><a href="classes.html"><span>类索引</span></a></li>
+      <li><a href="inherits.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>类成员</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_tanmi_engine.html">TanmiEngine</a></li><li class="navelem"><a class="el" href="class_tanmi_engine_1_1_message_handler.html">MessageHandler</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="class_tanmi_engine_1_1_message_handler-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">TanmiEngine::MessageHandler类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>事件处理基类  
+ <a href="class_tanmi_engine_1_1_message_handler.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a>&gt;</code></p>
+<div class="dynheader">
+TanmiEngine::MessageHandler 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_tanmi_engine_1_1_message_handler__coll__graph.png" border="0" usemap="#a_tanmi_engine_1_1_message_handler_coll__map" alt="Collaboration graph"/></div>
+<map name="a_tanmi_engine_1_1_message_handler_coll__map" id="a_tanmi_engine_1_1_message_handler_coll__map">
+<area shape="rect" title="事件处理基类" alt="" coords="325,56,528,81"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_queue.html" title=" " alt="" coords="5,5,213,60"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_queue.html" title=" " alt="" coords="11,85,207,125"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a75c2a46b95778eb8adc7ac80cf495905"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#a75c2a46b95778eb8adc7ac80cf495905">MessageHandler</a> ()=default</td></tr>
+<tr class="separator:a75c2a46b95778eb8adc7ac80cf495905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafe8fdfcfca93c2c726cb8a44bbc646e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#aafe8fdfcfca93c2c726cb8a44bbc646e">~MessageHandler</a> ()=default</td></tr>
+<tr class="separator:aafe8fdfcfca93c2c726cb8a44bbc646e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2e12fd29511f72287a4348e676ec4e2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#ab2e12fd29511f72287a4348e676ec4e2">Post</a> (<a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a> id, std::shared_ptr&lt; <a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a> &gt; cilent)</td></tr>
+<tr class="memdesc:ab2e12fd29511f72287a4348e676ec4e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送事件  <br /></td></tr>
+<tr class="separator:ab2e12fd29511f72287a4348e676ec4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4387ae50687394a0f66f5f69141530"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#a0d4387ae50687394a0f66f5f69141530">Run</a> ()</td></tr>
+<tr class="memdesc:a0d4387ae50687394a0f66f5f69141530"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理消息队列  <br /></td></tr>
+<tr class="separator:a0d4387ae50687394a0f66f5f69141530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e1d3db5660f2c669d41d850e58c335"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#af6e1d3db5660f2c669d41d850e58c335">HandleMessage</a> (const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a> id, std::shared_ptr&lt; <a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a> &gt; message)</td></tr>
+<tr class="memdesc:af6e1d3db5660f2c669d41d850e58c335"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理消息  <br /></td></tr>
+<tr class="separator:af6e1d3db5660f2c669d41d850e58c335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97914d1fa998102a310d030818f391bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#a97914d1fa998102a310d030818f391bb">Exit</a> ()</td></tr>
+<tr class="memdesc:a97914d1fa998102a310d030818f391bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭消息处理器  <br /></td></tr>
+<tr class="separator:a97914d1fa998102a310d030818f391bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:add31deb01f6b27477436208210ff1de5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tanmi_engine_1_1_message_queue.html">MessageQueue</a>&lt; std::shared_ptr&lt; <a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#add31deb01f6b27477436208210ff1de5">listener</a></td></tr>
+<tr class="memdesc:add31deb01f6b27477436208210ff1de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">监听器队列  <br /></td></tr>
+<tr class="separator:add31deb01f6b27477436208210ff1de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf326f92aa903ae28b04fe5c944c272"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tanmi_engine_1_1_message_queue.html">MessageQueue</a>&lt; <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#a1cf326f92aa903ae28b04fe5c944c272">listener_id</a></td></tr>
+<tr class="memdesc:a1cf326f92aa903ae28b04fe5c944c272"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件ID队列  <br /></td></tr>
+<tr class="separator:a1cf326f92aa903ae28b04fe5c944c272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa52cb43a4e98446e7e5a076a4c74ef6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tanmi_engine_1_1_message_handler.html#afa52cb43a4e98446e7e5a076a4c74ef6">exit</a> = false</td></tr>
+<tr class="memdesc:afa52cb43a4e98446e7e5a076a4c74ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否退出  <br /></td></tr>
+<tr class="separator:afa52cb43a4e98446e7e5a076a4c74ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>事件处理基类 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00017">17</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a75c2a46b95778eb8adc7ac80cf495905" name="a75c2a46b95778eb8adc7ac80cf495905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75c2a46b95778eb8adc7ac80cf495905">&#9670;&#160;</a></span>MessageHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TanmiEngine::MessageHandler::MessageHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafe8fdfcfca93c2c726cb8a44bbc646e" name="aafe8fdfcfca93c2c726cb8a44bbc646e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafe8fdfcfca93c2c726cb8a44bbc646e">&#9670;&#160;</a></span>~MessageHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TanmiEngine::MessageHandler::~MessageHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a97914d1fa998102a310d030818f391bb" name="a97914d1fa998102a310d030818f391bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97914d1fa998102a310d030818f391bb">&#9670;&#160;</a></span>Exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TanmiEngine::MessageHandler::Exit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>关闭消息处理器 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6e1d3db5660f2c669d41d850e58c335" name="af6e1d3db5660f2c669d41d850e58c335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e1d3db5660f2c669d41d850e58c335">&#9670;&#160;</a></span>HandleMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TanmiEngine::MessageHandler::HandleMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a> &gt;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>处理消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>事件ID </td></tr>
+    <tr><td class="paramname">message</td><td>监听器 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00049">49</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_tanmi_engine_1_1_message_handler_af6e1d3db5660f2c669d41d850e58c335_icgraph.png" border="0" usemap="#aclass_tanmi_engine_1_1_message_handler_af6e1d3db5660f2c669d41d850e58c335_icgraph" alt=""/></div>
+<map name="aclass_tanmi_engine_1_1_message_handler_af6e1d3db5660f2c669d41d850e58c335_icgraph" id="aclass_tanmi_engine_1_1_message_handler_af6e1d3db5660f2c669d41d850e58c335_icgraph">
+<area shape="rect" title="处理消息" alt="" coords="517,5,720,45"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_handler.html#a0d4387ae50687394a0f66f5f69141530" title="处理消息队列" alt="" coords="236,13,469,38"/>
+<area shape="rect" href="class_tanmi_engine_1_1_event_system.html#a7b521eb53a9bd7517f82beb8ae539385" title="注册消息处理器" alt="" coords="5,5,188,45"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab2e12fd29511f72287a4348e676ec4e2" name="ab2e12fd29511f72287a4348e676ec4e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2e12fd29511f72287a4348e676ec4e2">&#9670;&#160;</a></span>Post()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TanmiEngine::MessageHandler::Post </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a> &gt;&#160;</td>
+          <td class="paramname"><em>cilent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>发送事件 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>事件ID </td></tr>
+    <tr><td class="paramname">cilent</td><td>监听器 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00028">28</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_tanmi_engine_1_1_message_handler_ab2e12fd29511f72287a4348e676ec4e2_cgraph.png" border="0" usemap="#aclass_tanmi_engine_1_1_message_handler_ab2e12fd29511f72287a4348e676ec4e2_cgraph" alt=""/></div>
+<map name="aclass_tanmi_engine_1_1_message_handler_ab2e12fd29511f72287a4348e676ec4e2_cgraph" id="aclass_tanmi_engine_1_1_message_handler_ab2e12fd29511f72287a4348e676ec4e2_cgraph">
+<area shape="rect" title="发送事件" alt="" coords="5,5,208,45"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_queue.html#ab95248e6260fe5ceaaea5e55fefc3ea8" title="将消息T推入队列" alt="" coords="256,5,452,45"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0d4387ae50687394a0f66f5f69141530" name="a0d4387ae50687394a0f66f5f69141530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4387ae50687394a0f66f5f69141530">&#9670;&#160;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TanmiEngine::MessageHandler::Run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>处理消息队列 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00036">36</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_cgraph.png" border="0" usemap="#aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_cgraph" alt=""/></div>
+<map name="aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_cgraph" id="aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_cgraph">
+<area shape="rect" title="处理消息队列" alt="" coords="5,42,239,67"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_handler.html#af6e1d3db5660f2c669d41d850e58c335" title="处理消息" alt="" coords="299,5,501,45"/>
+<area shape="rect" href="class_tanmi_engine_1_1_message_queue.html#a24048460cc5ca9581a8a86b40720b3bf" title="从队列中取出下一个消息T并将其弹出队列" alt="" coords="287,70,513,95"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_icgraph.png" border="0" usemap="#aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_icgraph" alt=""/></div>
+<map name="aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_icgraph" id="aclass_tanmi_engine_1_1_message_handler_a0d4387ae50687394a0f66f5f69141530_icgraph">
+<area shape="rect" title="处理消息队列" alt="" coords="236,13,469,38"/>
+<area shape="rect" href="class_tanmi_engine_1_1_event_system.html#a7b521eb53a9bd7517f82beb8ae539385" title="注册消息处理器" alt="" coords="5,5,188,45"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="afa52cb43a4e98446e7e5a076a4c74ef6" name="afa52cb43a4e98446e7e5a076a4c74ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa52cb43a4e98446e7e5a076a4c74ef6">&#9670;&#160;</a></span>exit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TanmiEngine::MessageHandler::exit = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>是否退出 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<a id="add31deb01f6b27477436208210ff1de5" name="add31deb01f6b27477436208210ff1de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add31deb01f6b27477436208210ff1de5">&#9670;&#160;</a></span>listener</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tanmi_engine_1_1_message_queue.html">MessageQueue</a>&lt;std::shared_ptr&lt;<a class="el" href="class_tanmi_engine_1_1_listener.html">Listener</a>&gt; &gt; TanmiEngine::MessageHandler::listener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>监听器队列 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00061">61</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1cf326f92aa903ae28b04fe5c944c272" name="a1cf326f92aa903ae28b04fe5c944c272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf326f92aa903ae28b04fe5c944c272">&#9670;&#160;</a></span>listener_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tanmi_engine_1_1_message_queue.html">MessageQueue</a>&lt;<a class="el" href="_tanmi_event_8hpp.html#acfc2844b3d383766613f2eb3f5447f41">EventID</a>&gt; TanmiEngine::MessageHandler::listener_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>事件ID队列 </p>
+
+<p class="definition">在文件 <a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a> 第 <a class="el" href="_tanmi_message_handler_8hpp_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>I:/EnginePrj/TanmiEventSystem/src/<a class="el" href="_tanmi_message_handler_8hpp_source.html">TanmiMessageHandler.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

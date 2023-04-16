@@ -1,0 +1,4 @@
+<map id="TanmiEngine::MessageHandlerUpdate::Run" name="TanmiEngine::MessageHandlerUpdate::Run">
+<area shape="rect" id="node1" title="处理消息队列" alt="" coords="269,5,472,45"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system.html#a000187d3c35be133df0a430ed20bbaa4" title="注册消息处理器（带有时间参数）" alt="" coords="5,5,221,45"/>
+</map>

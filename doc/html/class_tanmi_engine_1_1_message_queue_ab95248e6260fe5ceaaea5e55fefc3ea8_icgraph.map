@@ -1,0 +1,5 @@
+<map id="TanmiEngine::MessageQueue::Push" name="TanmiEngine::MessageQueue::Push">
+<area shape="rect" id="node1" title="将消息T推入队列" alt="" coords="256,37,452,77"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_message_handler.html#ab2e12fd29511f72287a4348e676ec4e2" title="发送事件" alt="" coords="5,5,208,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_message_handler_update.html#abfd2977bd92e3275222602241c3d64ac" title="发送事件" alt="" coords="5,69,208,109"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="TanmiEngine::EventSystemException::what" name="TanmiEngine::EventSystemException::what">
+<area shape="rect" id="node1" title=" " alt="" coords="261,165,444,205"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system.html#a62e82a60470f6ba52f35c9491715b699" title="判断指定事件是否存在" alt="" coords="18,5,201,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_event_system.html#a569efea0e0d68c6a70f0307df2b70bfa" title="移除指定事件名称下的所有监听" alt="" coords="5,69,213,109"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_event_system.html#ad79ad0f6f8d00438cfbf98103b3c4fd3" title="移除所有与指定监听对象相关的事件" alt="" coords="15,133,203,173"/>
+<area shape="rect" id="node5" href="$class_tanmi_engine_1_1_event_system.html#a3486b5822e8724eddbe8fb7072b2ddba" title="移除事件下特定监听" alt="" coords="18,197,201,237"/>
+<area shape="rect" id="node6" href="$class_tanmi_engine_1_1_event_system.html#ad590e1f62cbbfef31da3e968935a47b5" title="触发事件" alt="" coords="18,261,201,301"/>
+<area shape="rect" id="node7" href="$class_tanmi_engine_1_1_event_system.html#a151b512b512ae830de9ab407aa6959d9" title="触发事件" alt="" coords="18,325,201,365"/>
+</map>

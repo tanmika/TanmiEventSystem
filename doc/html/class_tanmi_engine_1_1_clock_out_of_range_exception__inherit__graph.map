@@ -1,0 +1,5 @@
+<map id="TanmiEngine::ClockOutOfRangeException" name="TanmiEngine::ClockOutOfRangeException">
+<area shape="rect" id="node1" title="数值越界异常类。" alt="" coords="5,152,215,192"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock_exception.html" title="Clock 类异常基类。" alt="" coords="12,79,208,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="58,5,162,31"/>
+</map>

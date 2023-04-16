@@ -1,0 +1,5 @@
+<map id="TanmiEngine::Clock::RemoveEvent" name="TanmiEngine::Clock::RemoveEvent">
+<area shape="rect" id="node1" title="移除指定时钟中的事件" alt="" coords="5,37,144,77"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system.html#a23c22f0f25c75a54e65ff2c47274de6a" title=" " alt="" coords="199,5,381,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_clock_exception.html#a67bee5a448d21421a6bb74cba2b1ab6e" title=" " alt="" coords="192,69,388,109"/>
+</map>

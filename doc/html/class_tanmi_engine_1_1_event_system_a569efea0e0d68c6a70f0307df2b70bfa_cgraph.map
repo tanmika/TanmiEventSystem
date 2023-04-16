@@ -1,0 +1,4 @@
+<map id="TanmiEngine::EventSystem::RemoveAllEventForEventName" name="TanmiEngine::EventSystem::RemoveAllEventForEventName">
+<area shape="rect" id="node1" title="移除指定事件名称下的所有监听" alt="" coords="5,5,213,45"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system_exception.html#a92f0acfa9751e83a24b7e7c86cceb864" title=" " alt="" coords="261,5,444,45"/>
+</map>

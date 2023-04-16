@@ -1,0 +1,5 @@
+<map id="TanmiEngine::MessageHandler::Run" name="TanmiEngine::MessageHandler::Run">
+<area shape="rect" id="node1" title="处理消息队列" alt="" coords="5,42,239,67"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_message_handler.html#af6e1d3db5660f2c669d41d850e58c335" title="处理消息" alt="" coords="299,5,501,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_message_queue.html#a24048460cc5ca9581a8a86b40720b3bf" title="从队列中取出下一个消息T并将其弹出队列" alt="" coords="287,70,513,95"/>
+</map>

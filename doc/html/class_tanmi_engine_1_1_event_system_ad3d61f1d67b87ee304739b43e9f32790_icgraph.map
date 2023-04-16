@@ -1,0 +1,6 @@
+<map id="TanmiEngine::EventSystem::RegisterEvent" name="TanmiEngine::EventSystem::RegisterEvent">
+<area shape="rect" id="node1" title="注册事件" alt="" coords="236,69,419,109"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_event_system.html#add3c919bde1b523b8c6afa91686016f6" title="新建并注册事件" alt="" coords="5,5,188,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_event_system.html#a1a8fb073575c26ed27ba363d2a56a156" title="新建并注册指定数量事件" alt="" coords="5,69,188,109"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_event_system.html#a6554426b3ff1ac9f88a05d1b1db56841" title="使用容器注册事件" alt="" coords="5,133,188,173"/>
+</map>

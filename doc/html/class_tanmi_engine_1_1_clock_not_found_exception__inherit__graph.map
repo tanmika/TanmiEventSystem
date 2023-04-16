@@ -1,0 +1,5 @@
+<map id="TanmiEngine::ClockNotFoundException" name="TanmiEngine::ClockNotFoundException">
+<area shape="rect" id="node1" title="时钟未找到异常类。" alt="" coords="6,152,201,192"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock_exception.html" title="Clock 类异常基类。" alt="" coords="5,79,201,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="51,5,155,31"/>
+</map>

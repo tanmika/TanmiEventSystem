@@ -1,0 +1,7 @@
+<map id="TanmiEngine::ClockException" name="TanmiEngine::ClockException">
+<area shape="rect" id="node1" title="Clock 类异常基类。" alt="" coords="157,77,353,102"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_clock_event_not_found_exception.html" title="时钟事件未找到异常类。" alt="" coords="411,5,601,45"/>
+<area shape="rect" id="node4" href="$class_tanmi_engine_1_1_clock_not_found_exception.html" title="时钟未找到异常类。" alt="" coords="409,69,603,109"/>
+<area shape="rect" id="node5" href="$class_tanmi_engine_1_1_clock_out_of_range_exception.html" title="数值越界异常类。" alt="" coords="401,133,611,173"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,77,109,102"/>
+</map>

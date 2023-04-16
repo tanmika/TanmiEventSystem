@@ -1,0 +1,5 @@
+<map id="TanmiEngine::EventSystem::Instance" name="TanmiEngine::EventSystem::Instance">
+<area shape="rect" id="node1" title=" " alt="" coords="192,37,375,77"/>
+<area shape="rect" id="node2" href="$class_tanmi_engine_1_1_clock.html#af4cc9023469bf145f81dfb7dded2e3d5" title="将事件添加至指定时钟" alt="" coords="5,5,144,45"/>
+<area shape="rect" id="node3" href="$class_tanmi_engine_1_1_clock.html#ad80fb976c19352d2c313b68ffe3ef4c9" title="移除指定时钟中的事件" alt="" coords="5,69,144,109"/>
+</map>
