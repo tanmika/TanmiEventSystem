@@ -1,7 +1,12 @@
-//
-//	Tanmika --2023.4.8
-//
 #pragma once
+/*****************************************************************//**
+ * \file   TanmiEventSystem.hpp
+ * \brief  异步事件处理系统
+ * 
+ * \author tanmi
+ * \email tanmika@foxmail.com
+ * \date   April 2023
+ *********************************************************************/
 #include <map>
 #include <memory>
 #include <iostream>
@@ -13,7 +18,9 @@
 #define EVENT_SYSTEM
 namespace TanmiEngine
 {
-	// exception
+	/**
+	 * @brief EventSystem 类异常基类。
+	 */
 	class EventSystemException : public std::exception
 	{
 	public:
@@ -22,6 +29,9 @@ namespace TanmiEngine
 			return "::Expection Event System Exception basic";
 		}
 	};
+	/**
+	* @brief  事件未找到异常
+	*/
 	class EventSystemEventNotFoundException : public EventSystemException
 	{
 	public:
@@ -30,6 +40,9 @@ namespace TanmiEngine
 			return "::Expection event_not_found.";
 		}
 	};
+	/**
+	 * @brief  监听器未找到异常
+	 */
 	class EventSystemListenerNotFoundException : public EventSystemException
 	{
 	public:
@@ -38,6 +51,9 @@ namespace TanmiEngine
 			return "::Expection listener_not_found.";
 		}
 	};
+	/**
+	 * @brief	事件未注册异常
+	 */
 	class EventSystemEventNotRegistedException : public EventSystemException
 	{
 	public:
@@ -47,26 +63,37 @@ namespace TanmiEngine
 		}
 	};
 
-	// 事件类类型
+	// 概念定义
+	/**
+	 * @brief 事件基类概念
+	 */
 	template<typename T>
 	concept EventBase = std::is_base_of_v<Event, T>;
 
-	// 消息处理器类类型
+	/**
+	 * @brief 消息处理器基类概念
+	 */
 	template<typename T>
 	concept MessageHandlerBase = std::is_base_of_v<MessageHandler, T>;
 
-	// 消息处理器更新类类型
+	/**
+	 * @brief 消息处理器更新基类概念
+	 */
 	template<typename T>
 	concept MessageHandlerUpdateBase = std::is_base_of_v<MessageHandlerUpdate, T>;
 
-	// 可顺序读取的容器
+	/**
+	 * @brief 可顺序读取的容器概念
+	 */
 	template<typename Container>
 	concept InputRangeContainer = requires(Container c)
 	{
 		requires std::ranges::input_range<Container>;
 	};
 
-	// 可顺序读取的事件容器
+	/**
+	 * @brief 可顺序读取的事件容器概念
+	 */
 	template<typename Container>
 	concept EventContainer = requires(Container c)
 	{
@@ -75,7 +102,9 @@ namespace TanmiEngine
 			requires std::ranges::input_range<Container>;
 	};
 
-	// 可顺序读取的监听器指针容器
+	/**
+	 * @brief 可顺序读取的监听器指针容器概念
+	 */
 	template<typename Container>
 	concept ListenerSptrContainer = requires(Container c)
 	{
@@ -84,126 +113,231 @@ namespace TanmiEngine
 			requires std::ranges::input_range<Container>;
 	};
 
+	/**
+	 * @brief 事件系统类
+	 */
 	class EventSystem
 	{
 	private:
 		// 数据成员
-		std::multimap<EventID, std::weak_ptr<Listener>> EventList;
-		std::vector<std::shared_ptr<Listener>> listenersToWake;
-		std::vector<std::function<bool()>> eventsPreprocess;
-		std::mutex mtx;
-		std::mutex mtx_temp;
+		std::multimap<EventID, std::weak_ptr<Listener>> EventList;	//< 事件列表，<事件ID, 监听器指针>
+		std::vector<std::shared_ptr<Listener>> listenersToWake;		//< 待唤醒的监听器列表
+		std::vector<std::function<bool()>> eventsPreprocess;		//< 事件预处理函数列表
+		std::mutex mtx;												//< 互斥锁
+		std::mutex mtx_temp;										//< 临时互斥锁
 	private:
 		// 其他系统
-		std::shared_ptr<MessageHandler> messageHandler;
-		bool isMessageHandlerRegisted = false;
-		std::shared_ptr<MessageHandlerUpdate> messageHandlerUpdate;
-		bool isMessageHandlerUpdateRegisted = false;
+		std::shared_ptr<MessageHandler> messageHandler;				//< 消息处理器
+		bool isMessageHandlerRegisted = false;						//< 是否注册了消息处理器
+		std::shared_ptr<MessageHandlerUpdate> messageHandlerUpdate;	//< 消息处理器（带有时间参数）
+		bool isMessageHandlerUpdateRegisted = false;				//< 是否注册了消息处理器（带有时间参数）
 	private:
-		// 构造函数
+		/**
+		 * @brief 构造函数，默认占据预处理列表0号位
+		 */
 		EventSystem()
 		{
 			eventsPreprocess.emplace_back();
 		}
-		EventSystem(const EventSystem&) = delete;
-		EventSystem& operator=(const EventSystem&) = delete;
-		EventSystem(EventSystem&&) = delete;
-		EventSystem& operator=(EventSystem&&) = delete;
+		EventSystem(const EventSystem&) = delete;					//< 禁止拷贝构造
+		EventSystem& operator=(const EventSystem&) = delete;		//< 禁止拷贝赋值
+		EventSystem(EventSystem&&) = delete;						//< 禁止移动构造
+		EventSystem& operator=(EventSystem&&) = delete;				//< 禁止移动赋值
 	public:
-		// 获取EventSystem实例引用
-		static EventSystem& Instance();
+		static EventSystem& Instance();								//< 获取EventSystem实例引用
 
-		// 注册消息处理器
+		/**
+		 * @brief 注册消息处理器
+		 * 
+		 * @param _messageHandler 消息处理器
+		 */
 		void RegisterMessageHandler(std::shared_ptr<MessageHandler> _messageHandler);
 
-		// 注册并返回消息处理器
+		/**
+		 * @brief 注册并返回消息处理器
+		 * 
+		 * @tparam T 消息处理器类型
+		 * @param pram 消息处理器构造参数
+		 * 
+		 * @return 消息处理器指针
+		 */
 		template<MessageHandlerBase T, typename... P>
 		std::shared_ptr<T> RegisterMessageHandler(P...pram);
 
-		// 注册消息处理器
+		/**
+		 * @brief 注册消息处理器（带有时间参数）
+		 * 
+		 * @param _messageHandlerUpdate 消息处理器（带有时间参数）
+		 */
 		void RegisterMessageHandlerUpdate(std::shared_ptr<MessageHandlerUpdate> _messageHandlerUpdate);
 
-		// 注册并返回消息处理器
+		/**
+		 * @brief 注册并返回消息处理器（带有时间参数）
+		 * 
+		 * @tparam T 消息处理器类型
+		 * @param pram 消息处理器构造参数
+		 * 
+		 * @return std::shared_ptr<T> 消息处理器指针
+		 */
 		template<MessageHandlerUpdateBase T, typename... P>
 		std::shared_ptr<T> RegisterMessageHandlerUpdate(P...pram);
 
-		// 使用默认消息处理器
+		/**
+		 * @brief 使用默认消息处理器
+		 */
 		void UseMessageHandlerDefault();
 
-		// 注册事件
+		/**
+		 * @brief 注册事件
+		 * 
+		 * @param event 事件
+		 */
 		void RegisterEvent(Event& event);
 
-		// 使用容器注册事件
+		/**
+		 * @brief 使用容器注册事件
+		 * 
+		 * @tparam T 事件容器类型
+		 * @param events 事件容器
+		 */
 		template<EventContainer T>
 		void RegisterEvent(T& events);
 
-		// 新建并注册事件
+		/**
+		 * @brief 新建并注册事件
+		 * 
+		 * @tparam T 事件类型
+		 * @return std::shared_ptr<T> 事件指针
+		 */
 		template<EventBase T>
 		std::shared_ptr<T> NewAndRegisterEvent();
 
-		// 新建并注册指定数量事件
+		/**
+		 * @brief 新建并注册指定数量事件
+		 * 
+		 * @tparam T 事件类型
+		 * @param num 事件数量
+		 * 
+		 * @return std::vector<std::shared_ptr<T>> 事件指针列表
+		 */
 		template<EventBase T>
 		inline std::vector<std::shared_ptr<T>> NewAndRegisterEvents(int num);
 
-		// 新建并注册指定类型数量事件
+		/**
+		 * @brief 新建并注册指定类型数量事件
+		 * 
+		 * @tparam T 事件类型
+		 * @tparam C 事件容器类型
+		 * 
+		 * @param num 事件数量
+		 * 
+		 * @return C 事件容器
+		 */
 		template<EventBase T, InputRangeContainer C>
 		C NewAndRegisterEvents(int num);
 
-		// 触发事件
+		/**
+		 * @brief 触发事件
+		 * 
+		 * @param event 事件
+		 */
 		void TriggerEvent(const Event& event);
 
-		// 触发事件
+		/**
+		 * @brief 触发事件
+		 * 
+		 * @param eventID 事件ID
+		 */
 		void TriggerEvent(const EventID eventID);
 
-		// 触发事件
-		// event: 事件名称
-		// ms: 事件触发时的更新间隔
+		/**
+		 * @brief 触发事件
+		 * 
+		 * @param event 事件
+		 * @param ms 事件触发时的更新间隔
+		 */
 		void TriggerEventUpdate(const Event& event, double ms);
 
-		// 触发事件
-		// eventID: 事件ID
-		// ms: 事件触发时的更新间隔
+		/**
+		 * @brief 触发事件
+		 * 
+		 * @param eventID 事件ID
+		 * @param ms 事件触发时的更新间隔
+		 */
 		void TriggerEventUpdate(const EventID eventID, double ms);
 
-		// 添加事件
-		// event: 事件名称
-		// client: 监听对象
+		/**
+		 * @brief 添加事件
+		 * 
+		 * @param event 事件名称
+		 * @param client 监听对象
+		 */
 		void AddEventHandler(const Event& event, std::shared_ptr<Listener> client);
 		
-		// 添加事件
-		// events: 事件名称容器
-		// client: 监听对象
+		/**
+		 * @brief 添加事件
+		 * 
+		 * @tparam T 事件容器类型
+		 * 
+		 * @param events 事件名称容器
+		 * @param client 监听对象
+		 */
 		template<EventContainer T>
 		void AddEventHandler(const T& events, std::shared_ptr<Listener> client);
 
-		// 添加事件
-		// event: 事件名称
-		// clients: 监听对象容器
+		/**
+		 * @brief 添加事件
+		 * 
+		 * @tparam T 监听对象容器类型
+		 * @param event 事件名称
+		 * @param clients 监听对象容器
+		 */
 		template<ListenerSptrContainer T>
 		void addEventHandler(const Event& event, const T& clients);
 
-		// 移除事件下特定监听
-		// event: 事件名称
-		// client: 待移除的监听对象
+		/**
+		 * @brief 移除事件下特定监听
+		 * 
+		 * @param event 事件名称
+		 * @param client 待移除的监听对象
+		 */
 		void RemoveEventHandler(const Event& event, std::shared_ptr<Listener> client);
 
-		// 移除指定事件名称下的所有监听
-		// event: 事件名称
+		/**
+		 * @brief 移除指定事件名称下的所有监听
+		 * 
+		 * @param event 事件名称
+		 */
 		void RemoveAllEventForEventName(const Event& event);
 
-		// 移除所有与指定监听对象相关的事件
-		// client: 待移除的监听对象
+		/**
+		 * @brief 移除所有与指定监听对象相关的事件
+		 * 
+		 * @param client 待移除的监听对象
+		 */
 		void RemoveAllEventForListener(const std::shared_ptr<Listener> client);
 
-		// 判断指定事件是否存在
-		// event: 事件名称
+		/**
+		 * @brief 判断指定事件是否存在
+		 * 
+		 * @param event 事件名称
+		 * @return  true 存在
+		 * @return  false 不存在
+		 */
 		bool IsEventExist(const Event& event)const;
 
-		// 判断指定事件是否存在，无异常检测
-		// event: 事件名称
+		/**
+		 * @brief 判断指定事件是否存在，无异常检测
+		 * 
+		 * @param event 事件名称
+		 * @return true 存在
+		 * @return false 不存在
+		 */
 		bool IsEventExistNoException(const Event& event)const;
 
-		// 析构函数
+		/**
+		 * @brief 析构函数
+		 */
 		~EventSystem();
 	};
 
