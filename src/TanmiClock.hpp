@@ -2,7 +2,7 @@
  * @file	TanmiClock
  * @author	Tanmika
  * @email	tanmika@foxmail.com
- * @date	2023-4-12
+ * @date	2023-4-16
  * @brief	基于单例模式的简单时钟系统
  */
 #pragma once
@@ -22,6 +22,17 @@ namespace TanmiEngine
 	using ull = unsigned long long;	///< 使用 unsigned long long 定义 ull。
 	using lint = LARGE_INTEGER;		///< 使用 LARGE_INTEGER 定义 lint。
 	using ClockID = int;			///< 使用 int 定义 ClockID。
+
+	/**
+	 * @brief 可顺序读取的事件容器
+	 */
+	template<typename Container>
+	concept EventContainer = requires(Container c)
+	{
+		typename Container::value_type;
+			requires std::is_base_of_v<Event, typename Container::value_type>;
+			requires std::ranges::input_range<Container>;
+	};
 
 	/**
 	 * @brief Clock 类异常基类。
@@ -334,6 +345,13 @@ namespace TanmiEngine
 		 * @param event 事件ID
 		 */
 		void AddEvent(const ClockID _id, const Event& event);
+		/**
+		* @brief 将事件列表中所有事件添加至指定时钟
+		* @param _id 时钟ID
+		* @param events 事件列表
+		*/
+		template<EventContainer T>
+		void AddEvent(const ClockID _id, const T& events);
 		/**
 		 * @brief 移除指定时钟中的事件
 		 * @param _id 时钟ID
@@ -862,7 +880,29 @@ namespace TanmiEngine
 			std::cout << "\n::Clock::AddEvent()" << exp.what() << std::endl;
 		}
 	}
-
+	template<EventContainer T>
+	inline void Clock::AddEvent(const ClockID _id, const T& events)
+	{
+		std::shared_ptr<ClockElem> i(nullptr);
+		try
+		{
+			i = getIterator(_id);
+			if (i.get() == nullptr)
+				throw ClockNotFoundException();
+			EventSystem& eventsystem = EventSystem::Instance();
+			for (auto e : events)
+			{
+				if (eventsystem.IsEventExistNoException(e) == false)
+					throw ClockEventNotFoundException();
+				std::lock_guard<std::mutex> lock(i->lock);
+				i->eventList.push_back(e.ID);
+			}
+		}
+		catch (ClockException& exp)
+		{
+			std::cout << "\n::Clock::AddEvent()" << exp.what() << std::endl;
+		}
+	}
 	inline void Clock::RemoveEvent(const ClockID _id, const Event& event)
 	{
 		std::shared_ptr<ClockElem> i(nullptr);
