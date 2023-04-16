@@ -13,7 +13,7 @@
 #include <vector>
 #include <functional>
 
-#include "TanmiEventHandler.hpp"
+#include "TanmiMessageHandler.hpp"
 
 #define EVENT_SYSTEM
 namespace TanmiEngine
